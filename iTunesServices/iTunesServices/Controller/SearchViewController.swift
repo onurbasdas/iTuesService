@@ -16,7 +16,7 @@ class SearchViewController: UIViewController {
     var searchData = [MovieDetail]()
     var searchTunes = iTunesData()
     var service = Service()
-
+    var searchInfo : MovieDetail = MovieDetail()
     
     override func viewDidLoad() {
         super.viewDidLoad()

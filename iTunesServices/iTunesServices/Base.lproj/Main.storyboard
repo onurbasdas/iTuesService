@@ -128,7 +128,6 @@
                     <connections>
                         <outlet property="searchButton" destination="tPS-bO-O7I" id="yTL-ky-txD"/>
                         <outlet property="searchTableView" destination="nYq-Tr-Wlv" id="pbe-OG-ZwA"/>
-                        <segue destination="pc4-8W-7uW" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="riZ-A9-BBH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Heu-Qy-LnP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -287,9 +286,6 @@
             <point key="canvasLocation" x="-4157" y="621"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="aZH-cf-9Te"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>

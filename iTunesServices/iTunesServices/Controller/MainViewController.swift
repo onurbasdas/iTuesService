@@ -39,7 +39,7 @@ class MainViewController: UIViewController, FavoriteProtocol {
     
     func favoriteClicked(cell: UICollectionViewCell, button: UIButton) {
         let index : IndexPath = mainCollectionView.indexPath(for: cell)!
-        if FavoriteManager.checkIfFavorites(movieId: resultData[index.row].id!) != nil {
+        if FavoriteManager.checkIfFavorites(movieId: resultData[index.row].id!) != true {
             FavoriteManager.saveFavoriteFilm(film: resultData[index.row])
             button.setImage(UIImage(systemName: "star.fill"), for: .normal)
             button.tag = 1

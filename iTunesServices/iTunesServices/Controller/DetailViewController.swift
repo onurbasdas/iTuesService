@@ -17,7 +17,8 @@ class DetailViewController: UIViewController {
     @IBOutlet var favoriteBarButton: UIBarButtonItem!
     
     var check : Bool?
-    var selectedItemModel : MovieDetail = MovieDetail()    
+    var selectedItemModel : MovieDetail = MovieDetail()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         conf()
