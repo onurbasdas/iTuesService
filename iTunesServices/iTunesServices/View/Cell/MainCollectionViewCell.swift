@@ -7,12 +7,19 @@
 
 import UIKit
 
+protocol FavoriteProtocol: AnyObject {
+    func favoriteClicked(cell: UICollectionViewCell, button: UIButton)
+}
+
 class MainCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "MainCollectionViewCell"
     static func nib() -> UINib {
         return UINib(nibName: "MainCollectionViewCell", bundle: nil)
     }
+    
+    weak var delegate: FavoriteProtocol?
+
     
     @IBOutlet var backView: UIView!
     @IBOutlet var imageMain: UIImageView!
@@ -29,16 +36,11 @@ class MainCollectionViewCell: UICollectionViewCell {
     func conf() {
         backView.layer.cornerRadius = 8
         labelMain.layer.cornerRadius = 8
+        favoriteButton.tag = 0
     }
     
     @IBAction func favoriteButtonClicked(_ sender: Any) {
-        if check == true {
-            favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
-            check = false
-        } else {
-            favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            check = true
-        }
+        delegate?.favoriteClicked(cell: self, button: favoriteButton)
     }
     
     

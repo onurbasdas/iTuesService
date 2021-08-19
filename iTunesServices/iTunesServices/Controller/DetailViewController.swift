@@ -17,11 +17,15 @@ class DetailViewController: UIViewController {
     @IBOutlet var favoriteBarButton: UIBarButtonItem!
     
     var check : Bool?
-    var selectedItemModel : Results = Results()
-    
+    var selectedItemModel : MovieDetail = MovieDetail()    
     override func viewDidLoad() {
         super.viewDidLoad()
         conf()
+        favoriteBarButton.tag = 0
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        getMovieDetail()
     }
     
     func conf() {
@@ -31,13 +35,25 @@ class DetailViewController: UIViewController {
         dateDetail.text = selectedItemModel.releaseDate
     }
     
-    @IBAction func favoriteBarClicked(_ sender: Any) {
-        if check == true {
-            favoriteBarButton.image = UIImage(systemName: "star")
-            check = false
+    func getMovieDetail() {
+        if FavoriteManager.checkIfFavorites(movieId: selectedItemModel.id ?? "") {
+            self.favoriteBarButton.image = UIImage(systemName: "star.fill")
+            favoriteBarButton.tag = 1
         } else {
+            self.favoriteBarButton.image = UIImage(systemName: "star")
+            favoriteBarButton.tag = 0
+        }
+    }
+    
+    @IBAction func favoriteBarClicked(_ sender: Any) {
+        if favoriteBarButton.tag == 0 {
+            FavoriteManager.saveFavoriteFilm(film: selectedItemModel)
             favoriteBarButton.image = UIImage(systemName: "star.fill")
-            check = true
+            favoriteBarButton.tag = 1
+        } else {
+            FavoriteManager.deleteMovie(movieId: selectedItemModel.id ?? "")
+            favoriteBarButton.image = UIImage(systemName: "star")
+            favoriteBarButton.tag = 0
         }
     }
 }

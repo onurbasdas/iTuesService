@@ -13,7 +13,7 @@ class SearchViewController: UIViewController {
     @IBOutlet var searchButton: UISearchBar!
     @IBOutlet var searchTableView: UITableView!
     
-    var searchData = [Results]()
+    var searchData = [MovieDetail]()
     var searchTunes = iTunesData()
     var service = Service()
 

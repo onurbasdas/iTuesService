@@ -8,18 +8,22 @@
 import UIKit
 import Kingfisher
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, FavoriteProtocol {
     
     @IBOutlet var mainCollectionView: UICollectionView!
     
     var service = Service()
-    var resultData = [Results]()
+    var resultData = [MovieDetail]()
     var iTunes = iTunesData()
-    var detailsInfo : Results = Results()
+    var detailsInfo : MovieDetail = MovieDetail()
+    var movie : MovieDetail?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mainCollectionView.register(MainCollectionViewCell.nib(), forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         getData()
     }
     
@@ -29,6 +33,22 @@ class MainViewController: UIViewController {
                 self.iTunes = result!
                 resultData.append(contentsOf: iTunes.results!)
                 mainCollectionView.reloadData()
+            }
+        }
+    }
+    
+    func favoriteClicked(cell: UICollectionViewCell, button: UIButton) {
+        let index : IndexPath = mainCollectionView.indexPath(for: cell)!
+        if FavoriteManager.checkIfFavorites(movieId: resultData[index.row].id!) != nil {
+            FavoriteManager.saveFavoriteFilm(film: resultData[index.row])
+            button.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            button.tag = 1
+        } else {
+            FavoriteManager.deleteMovie(movieId: resultData[index.row].id!)
+            button.setImage(UIImage(systemName: "star"), for: .normal)
+            button.tag = 0
+            DispatchQueue.main.async {
+                self.mainCollectionView.reloadData()
             }
         }
     }
@@ -42,6 +62,14 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
+        if FavoriteManager.checkIfFavorites(movieId: resultData[indexPath.row].id!) {
+            cell.favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            cell.favoriteButton.tag = 1
+        } else {
+            cell.favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+            cell.favoriteButton.tag = 0
+        }
+        cell.delegate = self
         cell.labelMain.text = resultData[indexPath.item].name
         cell.imageMain.kf.setImage(with: URL(string: resultData[indexPath.item].artworkUrl100!))
         
