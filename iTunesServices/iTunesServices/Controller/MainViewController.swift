@@ -44,6 +44,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
         cell.labelMain.text = resultData[indexPath.item].name
         cell.imageMain.kf.setImage(with: URL(string: resultData[indexPath.item].artworkUrl100!))
+        
         return cell
     }
     

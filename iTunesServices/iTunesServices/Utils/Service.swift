@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 class Service {
+    
     func getInfo(callback:@escaping (iTunesData?) -> Void){
         AF.request("\(Constants.baseUrl)", method: .get,encoding: JSONEncoding.default).response{ response in
             guard let data = response.data else {return}

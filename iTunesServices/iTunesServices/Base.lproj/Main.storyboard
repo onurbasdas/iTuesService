@@ -95,10 +95,40 @@
                     <view key="view" contentMode="scaleToFill" id="aHj-86-4wq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="tPS-bO-O7I">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="ceW-RX-Qkl"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nYq-Tr-Wlv">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="UwW-rM-dJA" id="17a-zZ-iBg"/>
+                                    <outlet property="delegate" destination="UwW-rM-dJA" id="pEk-Bg-t5m"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="SHN-RF-dyC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nYq-Tr-Wlv" firstAttribute="top" secondItem="tPS-bO-O7I" secondAttribute="bottom" id="3ip-JX-UK8"/>
+                            <constraint firstItem="tPS-bO-O7I" firstAttribute="top" secondItem="SHN-RF-dyC" secondAttribute="top" id="9Zr-oq-EZd"/>
+                            <constraint firstItem="SHN-RF-dyC" firstAttribute="bottom" secondItem="nYq-Tr-Wlv" secondAttribute="bottom" id="GuL-ER-RAA"/>
+                            <constraint firstItem="nYq-Tr-Wlv" firstAttribute="leading" secondItem="SHN-RF-dyC" secondAttribute="leading" id="P62-Qp-4sr"/>
+                            <constraint firstItem="tPS-bO-O7I" firstAttribute="trailing" secondItem="SHN-RF-dyC" secondAttribute="trailing" id="jyv-kT-BQc"/>
+                            <constraint firstItem="SHN-RF-dyC" firstAttribute="trailing" secondItem="nYq-Tr-Wlv" secondAttribute="trailing" id="kbf-Ns-Whf"/>
+                            <constraint firstItem="tPS-bO-O7I" firstAttribute="leading" secondItem="SHN-RF-dyC" secondAttribute="leading" id="rcQ-PO-4vf"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass.circle" catalog="system" selectedImage="magnifyingglass.circle.fill" id="CeW-We-hgQ"/>
+                    <connections>
+                        <outlet property="searchButton" destination="tPS-bO-O7I" id="yTL-ky-txD"/>
+                        <outlet property="searchTableView" destination="nYq-Tr-Wlv" id="pbe-OG-ZwA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Heu-Qy-LnP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

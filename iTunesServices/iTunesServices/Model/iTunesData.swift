@@ -18,7 +18,6 @@ struct iTunesData : Codable {
     var results : [Results]?
 }
 
-
 struct Results: Codable {
     var artistName : String?
     var id : String?

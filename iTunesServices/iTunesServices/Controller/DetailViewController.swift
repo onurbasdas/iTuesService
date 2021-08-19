@@ -16,10 +16,8 @@ class DetailViewController: UIViewController {
     @IBOutlet var dateDetail: UILabel!
     @IBOutlet var favoriteBarButton: UIBarButtonItem!
     
-    
     var check : Bool?
     var selectedItemModel : Results = Results()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
