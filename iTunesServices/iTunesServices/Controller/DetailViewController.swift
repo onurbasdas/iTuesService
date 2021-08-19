@@ -30,7 +30,7 @@ class DetailViewController: UIViewController {
     }
     
     func conf() {
-        imageDetail.kf.setImage(with: URL(string: selectedItemModel.artworkUrl100!))
+        imageDetail.kf.setImage(with: URL(string: selectedItemModel.artworkUrl100 ?? ""))
         nameDetail.text = selectedItemModel.name
         authorDetail.text = selectedItemModel.artistName
         dateDetail.text = selectedItemModel.releaseDate
@@ -50,10 +50,12 @@ class DetailViewController: UIViewController {
         if favoriteBarButton.tag == 0 {
             FavoriteManager.saveFavoriteFilm(film: selectedItemModel)
             favoriteBarButton.image = UIImage(systemName: "star.fill")
+            self.makeAlert(titleInput: "Favori", messageInput: "Favorilere Eklenmiştir.")
             favoriteBarButton.tag = 1
         } else {
             FavoriteManager.deleteMovie(movieId: selectedItemModel.id ?? "")
             favoriteBarButton.image = UIImage(systemName: "star")
+            self.makeAlert(titleInput: "Favori", messageInput: "Favorilerden Çıkarılmıştır.")
             favoriteBarButton.tag = 0
         }
     }

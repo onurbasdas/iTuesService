@@ -13,13 +13,20 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     static func nib() -> UINib {
         return UINib(nibName: "FavoriteCollectionViewCell", bundle: nil)
     }
+    
     @IBOutlet var favoriteBackView: UIView!
     @IBOutlet var favoriteImageMain: UIImageView!
     @IBOutlet var favoriteClikButton: UIButton!
     @IBOutlet var favoriteLabelMain: UILabel!
     
+    var favoriteList = [MovieDetail]()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    func loadData(user: [MovieDetail]) {
+        self.favoriteList = user
     }
     
     @IBAction func favoriteButclicked(_ sender: Any) {

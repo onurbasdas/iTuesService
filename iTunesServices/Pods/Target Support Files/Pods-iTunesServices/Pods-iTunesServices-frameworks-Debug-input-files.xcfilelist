@@ -1,3 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-iTunesServices/Pods-iTunesServices-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/BTNavigationDropdownMenu/BTNavigationDropdownMenu.framework
 ${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework

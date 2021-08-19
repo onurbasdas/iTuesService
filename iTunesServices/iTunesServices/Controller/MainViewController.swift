@@ -7,6 +7,8 @@
 
 import UIKit
 import Kingfisher
+import BTNavigationDropdownMenu
+
 
 class MainViewController: UIViewController, FavoriteProtocol {
     
@@ -17,10 +19,34 @@ class MainViewController: UIViewController, FavoriteProtocol {
     var iTunes = iTunesData()
     var detailsInfo : MovieDetail = MovieDetail()
     var movie : MovieDetail?
+    let items = ["Eskiden Yeniye", "Tümü", "Yeniden Eskiye", "Beğenilenler"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mainCollectionView.register(MainCollectionViewCell.nib(), forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
+        conf()
+    }
+    
+    func conf() {
+        let menuView = BTNavigationDropdownMenu(title: BTTitle.index(1), items: items)
+        self.navigationItem.titleView = menuView
+        menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
+            if indexPath == 0 {
+                let testArray = ["1998-01-11", "1992-02-12", "1995-03-11"]
+                var convertedArray: [Date] = []
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                for dat in testArray {
+                    let date = dateFormatter.date(from: dat)
+                    if let date = date {
+                        convertedArray.append(date)
+                    }
+                }
+                let ready = convertedArray.sorted(by: { $0.compare($1) == .orderedDescending })
+                print(ready)
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,10 +68,12 @@ class MainViewController: UIViewController, FavoriteProtocol {
         if FavoriteManager.checkIfFavorites(movieId: resultData[index.row].id!) != true {
             FavoriteManager.saveFavoriteFilm(film: resultData[index.row])
             button.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            self.makeAlert(titleInput: "Favori", messageInput: "Favorilere Eklenmiştir.")
             button.tag = 1
         } else {
             FavoriteManager.deleteMovie(movieId: resultData[index.row].id!)
             button.setImage(UIImage(systemName: "star"), for: .normal)
+            self.makeAlert(titleInput: "Favori", messageInput: "Favorilerden Çıkarılmıştır.")
             button.tag = 0
             DispatchQueue.main.async {
                 self.mainCollectionView.reloadData()

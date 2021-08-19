@@ -15,6 +15,7 @@
 		B90C69DF26CD0A6600F444DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B90C69DD26CD0A6600F444DF /* LaunchScreen.storyboard */; };
 		B90C69EA26CD0A6700F444DF /* iTunesServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90C69E926CD0A6700F444DF /* iTunesServicesTests.swift */; };
 		B90C69F526CD0A6700F444DF /* iTunesServicesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90C69F426CD0A6700F444DF /* iTunesServicesUITests.swift */; };
+		B9116FB426CED90A00C1B8CE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9116FB326CED90A00C1B8CE /* Extensions.swift */; };
 		B956454726CD4C16003D1FEE /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B956454626CD4C16003D1FEE /* FavoritesViewController.swift */; };
 		B99F56A326CE410A0073C1A6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F56A126CE410A0073C1A6 /* SearchTableViewCell.swift */; };
 		B99F56A426CE410A0073C1A6 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B99F56A226CE410A0073C1A6 /* SearchTableViewCell.xib */; };
@@ -70,6 +71,7 @@
 		B90C69F026CD0A6700F444DF /* iTunesServicesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTunesServicesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B90C69F426CD0A6700F444DF /* iTunesServicesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesServicesUITests.swift; sourceTree = "<group>"; };
 		B90C69F626CD0A6700F444DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9116FB326CED90A00C1B8CE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B956454626CD4C16003D1FEE /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		B99F56A126CE410A0073C1A6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		B99F56A226CE410A0073C1A6 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				B9EFAB4526CD123C004D1C9A /* Service.swift */,
 				B9EFAB4726CD1279004D1C9A /* Constant.swift */,
 				B99F56AB26CE59A90073C1A6 /* FavoriteManager.swift */,
+				B9116FB326CED90A00C1B8CE /* Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				B90C69D526CD0A6500F444DF /* SceneDelegate.swift in Sources */,
 				B9EFAB3F26CD0CEE004D1C9A /* DetailViewController.swift in Sources */,
 				B99F56AE26CE59DC0073C1A6 /* MovieDetail.swift in Sources */,
+				B9116FB426CED90A00C1B8CE /* Extensions.swift in Sources */,
 				B9EFAB3D26CD0CE5004D1C9A /* SearchViewController.swift in Sources */,
 				B9EFAB4A26CD130D004D1C9A /* iTunesData.swift in Sources */,
 				B956454726CD4C16003D1FEE /* FavoritesViewController.swift in Sources */,

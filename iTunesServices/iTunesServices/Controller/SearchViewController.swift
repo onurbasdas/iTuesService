@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 class SearchViewController: UIViewController {
-
+    
     @IBOutlet var searchButton: UISearchBar!
     @IBOutlet var searchTableView: UITableView!
     
@@ -18,10 +18,12 @@ class SearchViewController: UIViewController {
     var service = Service()
     var searchInfo : MovieDetail = MovieDetail()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTableView.register(SearchTableViewCell.nib(), forCellReuseIdentifier: SearchTableViewCell.identifier)
         getData()
+        
     }
     
     func getData() {
@@ -52,4 +54,17 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 125
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "toDetail", sender: nil)
+        searchInfo = searchData[indexPath.row]
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? DetailViewController {
+            dest.selectedItemModel = searchInfo
+            print(dest.selectedItemModel)
+        }
+    }
+    
 }

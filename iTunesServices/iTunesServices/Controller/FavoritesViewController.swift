@@ -12,12 +12,27 @@ class FavoritesViewController: UIViewController {
     @IBOutlet var favoriteCollectionView: UICollectionView!
     
     var resultData = [MovieDetail]()
+    var service = Service()
+    var iTunes = iTunesData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         favoriteCollectionView.register(FavoriteCollectionViewCell.nib(), forCellWithReuseIdentifier: FavoriteCollectionViewCell.identifier)
-
+        getData()
+        
+        
     }
+    
+    func getData() {
+        service.getInfo { result in
+            DispatchQueue.main.async { [self] in
+                self.iTunes = result!
+                resultData.append(contentsOf: iTunes.results!)
+                favoriteCollectionView.reloadData()
+            }
+        }
+    }
+
 }
 
 extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -27,10 +42,8 @@ extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = favoriteCollectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCollectionViewCell.identifier, for: indexPath) as! FavoriteCollectionViewCell
-        if FavoriteManager.checkIfFavorites(movieId: resultData[indexPath.row].id!) {
-            FavoriteManager.readFavoriteMovies()
-            cell.favoriteLabelMain.text = resultData[indexPath.row].name
-        }
+        cell.loadData(user: resultData)
+        cell.favoriteLabelMain.text = resultData[indexPath.row].name
         return cell
     }
     

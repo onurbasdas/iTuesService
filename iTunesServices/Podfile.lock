@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (5.4.3)
+  - BTNavigationDropdownMenu (0.7)
   - Kingfisher (6.3.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.4)
+  - BTNavigationDropdownMenu
   - Kingfisher
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - BTNavigationDropdownMenu
     - Kingfisher
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  BTNavigationDropdownMenu: 57a72c74dc211db3564f5be168f4f7643491a7de
   Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
 
-PODFILE CHECKSUM: 60522e952fefe1f72856a28efae22409246892f0
+PODFILE CHECKSUM: 9c216b4fd25a2e2b7b5e75a8481b52968e0c4071
 
 COCOAPODS: 1.10.1
