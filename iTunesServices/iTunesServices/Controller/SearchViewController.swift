@@ -13,10 +13,10 @@ class SearchViewController: UIViewController {
     @IBOutlet var searchButton: UISearchBar!
     @IBOutlet var searchTableView: UITableView!
     
-    var searchData = [MovieDetail]()
+    var searchData = [BookDetail]()
     var searchTunes = iTunesData()
     var service = Service()
-    var searchInfo : MovieDetail = MovieDetail()
+    var searchInfo : BookDetail = BookDetail()
     
     
     override func viewDidLoad() {

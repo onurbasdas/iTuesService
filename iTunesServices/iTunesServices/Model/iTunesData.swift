@@ -15,5 +15,5 @@ struct iTunesData : Codable {
     var title : String?
     var copyright : String?
     var country :String?
-    var results : [MovieDetail]?
+    var results : [BookDetail]?
 }

@@ -13,16 +13,16 @@ class FavoriteManager {
         return String(format: "favoriteFilms%@")
     }
     
-    static func readFavoriteMovies() -> [MovieDetail] {
+    static func readFavoriteMovies() -> [BookDetail] {
         let defaults = UserDefaults.standard
         if let data = defaults.object(forKey: readFavoriteKey()) as? NSData {
-            let movieList = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [MovieDetail]
+            let movieList = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [BookDetail]
             return movieList
         }
-        return [MovieDetail]()
+        return [BookDetail]()
     }
     
-    static func saveFavoriteFilm(film: MovieDetail) {
+    static func saveFavoriteFilm(film: BookDetail) {
         var currentList = readFavoriteMovies()
         currentList.append(film)
         let defaults = UserDefaults.standard

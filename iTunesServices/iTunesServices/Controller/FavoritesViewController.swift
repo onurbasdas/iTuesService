@@ -11,7 +11,7 @@ class FavoritesViewController: UIViewController {
 
     @IBOutlet var favoriteCollectionView: UICollectionView!
     
-    var resultData = [MovieDetail]()
+    var resultData = [BookDetail]()
     var service = Service()
     var iTunes = iTunesData()
     

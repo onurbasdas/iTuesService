@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MovieDetail: NSObject, Codable, NSCoding {
+class BookDetail: NSObject, Codable, NSCoding {
     var artistName : String?
     var id : String?
     var releaseDate : String?

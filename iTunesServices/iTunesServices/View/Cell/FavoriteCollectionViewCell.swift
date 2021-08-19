@@ -19,13 +19,13 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     @IBOutlet var favoriteClikButton: UIButton!
     @IBOutlet var favoriteLabelMain: UILabel!
     
-    var favoriteList = [MovieDetail]()
+    var favoriteList = [BookDetail]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func loadData(user: [MovieDetail]) {
+    func loadData(user: [BookDetail]) {
         self.favoriteList = user
     }
     

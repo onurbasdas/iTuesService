@@ -15,10 +15,10 @@ class MainViewController: UIViewController, FavoriteProtocol {
     @IBOutlet var mainCollectionView: UICollectionView!
     
     var service = Service()
-    var resultData = [MovieDetail]()
+    var resultData = [BookDetail]()
     var iTunes = iTunesData()
-    var detailsInfo : MovieDetail = MovieDetail()
-    var movie : MovieDetail?
+    var detailsInfo : BookDetail = BookDetail()
+    var movie : BookDetail?
     let items = ["Eskiden Yeniye", "Tümü", "Yeniden Eskiye", "Beğenilenler"]
     
     
