@@ -28,5 +28,4 @@ struct Results: Codable {
     var artistId : String?
     var artistUrl : String?
     var artworkUrl100 : String?
-
 }

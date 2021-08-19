@@ -21,7 +21,6 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     var check : Bool?
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         conf()

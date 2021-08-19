@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
     var service = Service()
     var resultData = [Results]()
     var iTunes = iTunesData()
+    var detailsInfo : Results = Results()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +44,18 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
         cell.labelMain.text = resultData[indexPath.item].name
         cell.imageMain.kf.setImage(with: URL(string: resultData[indexPath.item].artworkUrl100!))
-
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        detailsInfo = resultData[indexPath.row]
+        performSegue(withIdentifier: "toDetailsVC", sender: self)
+        
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? DetailViewController {
+            dest.selectedItemModel = detailsInfo
+        }
+    }
 }
