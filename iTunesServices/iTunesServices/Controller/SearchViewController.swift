@@ -13,9 +13,9 @@ class SearchViewController: UIViewController {
     @IBOutlet var searchButton: UISearchBar!
     @IBOutlet var searchTableView: UITableView!
     
+    var service = Service()
     var searchData = [BookDetail]()
     var searchTunes = iTunesData()
-    var service = Service()
     var searchInfo : BookDetail = BookDetail()
     
     
@@ -56,14 +56,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "toDetail", sender: nil)
         searchInfo = searchData[indexPath.row]
+        performSegue(withIdentifier: "toDetail", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? DetailViewController {
             dest.selectedItemModel = searchInfo
-            print(dest.selectedItemModel)
         }
     }
     

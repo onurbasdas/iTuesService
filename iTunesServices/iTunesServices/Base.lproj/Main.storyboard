@@ -124,7 +124,9 @@
                             <constraint firstItem="tPS-bO-O7I" firstAttribute="leading" secondItem="SHN-RF-dyC" secondAttribute="leading" id="rcQ-PO-4vf"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="bUb-2K-mx7"/>
+                    <navigationItem key="navigationItem" id="bUb-2K-mx7">
+                        <barButtonItem key="backBarButtonItem" title=" " id="jF7-YY-KtO"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchButton" destination="tPS-bO-O7I" id="yTL-ky-txD"/>
                         <outlet property="searchTableView" destination="nYq-Tr-Wlv" id="pbe-OG-ZwA"/>
@@ -311,6 +313,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cu8-aB-qIX">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="labelColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -323,7 +326,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aZH-cf-9Te"/>
+        <segue reference="2a5-zd-QYM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="106"/>
