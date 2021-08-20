@@ -7,28 +7,36 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController {
-
+class FavoritesViewController: UIViewController, FavoriteCollectionProtocol {
+  
     @IBOutlet var favoriteCollectionView: UICollectionView!
     
-    var resultData = [BookDetail]()
-    var service = Service()
-    var iTunes = iTunesData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         favoriteCollectionView.register(FavoriteCollectionViewCell.nib(), forCellWithReuseIdentifier: FavoriteCollectionViewCell.identifier)
-        getData()
-        
-        
     }
     
-    func getData() {
-        service.getInfo { result in
-            DispatchQueue.main.async { [self] in
-                self.iTunes = result!
-                resultData.append(contentsOf: iTunes.results!)
-                favoriteCollectionView.reloadData()
+    override func viewDidAppear(_ animated: Bool) {
+        favoriteCollectionView.reloadData()
+    }
+    
+    func favoriteCell(cell: UICollectionViewCell, button: UIButton) {
+        let index : IndexPath = favoriteCollectionView.indexPath(for: cell)!
+        let favoriteManageCell = FavoriteManager.readFavoriteMovies()[index.row]
+
+        if FavoriteManager.checkIfFavorites(movieId: favoriteManageCell.id!) != true {
+            FavoriteManager.saveFavoriteFilm(film: favoriteManageCell)
+            button.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            self.makeAlert(titleInput: "Favori", messageInput: "Favorilere Eklenmiştir.")
+            button.tag = 1
+        } else {
+            FavoriteManager.deleteMovie(movieId: favoriteManageCell.id!)
+            button.setImage(UIImage(systemName: "star"), for: .normal)
+            self.makeAlert(titleInput: "Favori", messageInput: "Favorilerden Çıkarılmıştır.")
+            button.tag = 0
+            DispatchQueue.main.async {
+                self.favoriteCollectionView.reloadData()
             }
         }
     }
@@ -37,13 +45,24 @@ class FavoritesViewController: UIViewController {
 
 extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return resultData.count
+        return FavoriteManager.readFavoriteMovies().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = favoriteCollectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCollectionViewCell.identifier, for: indexPath) as! FavoriteCollectionViewCell
-        cell.loadData(user: resultData)
-        cell.favoriteLabelMain.text = resultData[indexPath.row].name
+        let favoriteManager = FavoriteManager.readFavoriteMovies()[indexPath.row]
+                
+        cell.favoriteLabelMain.text = favoriteManager.name
+        cell.favoriteImageMain.kf.setImage(with: URL(string: favoriteManager.artworkUrl100!))
+        cell.delegate = self
+        
+        if FavoriteManager.checkIfFavorites(movieId: favoriteManager.id!) {
+            cell.favoriteClikButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            cell.favoriteClikButton.tag = 1
+        } else {
+            cell.favoriteClikButton.setImage(UIImage(systemName: "star"), for: .normal)
+            cell.favoriteClikButton.tag = 0
+        }
         return cell
     }
     

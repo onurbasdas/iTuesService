@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol FavoriteCollectionProtocol: AnyObject {
+    func favoriteCell(cell: UICollectionViewCell, button: UIButton)
+}
+
 class FavoriteCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "FavoriteCollectionViewCell"
@@ -14,23 +18,22 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         return UINib(nibName: "FavoriteCollectionViewCell", bundle: nil)
     }
     
+    weak var delegate: FavoriteCollectionProtocol?
+    
+    
     @IBOutlet var favoriteBackView: UIView!
     @IBOutlet var favoriteImageMain: UIImageView!
     @IBOutlet var favoriteClikButton: UIButton!
     @IBOutlet var favoriteLabelMain: UILabel!
     
-    var favoriteList = [BookDetail]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    }
-    
-    func loadData(user: [BookDetail]) {
-        self.favoriteList = user
+        favoriteClikButton.tag = 0
     }
     
     @IBAction func favoriteButclicked(_ sender: Any) {
-        print("test")
+        delegate?.favoriteCell(cell: self, button: favoriteClikButton)
+        
     }
-    
 }

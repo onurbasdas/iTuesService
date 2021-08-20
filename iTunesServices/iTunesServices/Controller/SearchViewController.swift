@@ -17,11 +17,14 @@ class SearchViewController: UIViewController {
     var searchData = [BookDetail]()
     var searchTunes = iTunesData()
     var searchInfo : BookDetail = BookDetail()
+    var str = [BookDetail]()
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTableView.register(SearchTableViewCell.nib(), forCellReuseIdentifier: SearchTableViewCell.identifier)
+        searchButton.delegate = self
         getData()
         
     }
@@ -44,10 +47,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = searchTableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as! SearchTableViewCell
+        
         cell.imageName.text = searchData[indexPath.row].name
         cell.imageAuthor.text = searchData[indexPath.row].artistName
         cell.imageDate.text = searchData[indexPath.row].releaseDate
         cell.imageSearch.kf.setImage(with: URL(string: searchData[indexPath.row].artworkUrl100!))
+        
         return cell
     }
     
@@ -66,4 +71,40 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        let textFieldInsideUISearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideUISearchBar?.textColor = UIColor.black
+        textFieldInsideUISearchBar?.font = textFieldInsideUISearchBar?.font?.withSize(16)
+        let labelInsideUISearchBar = textFieldInsideUISearchBar!.value(forKey: "placeholderLabel") as? UILabel
+        labelInsideUISearchBar?.textColor = UIColor.black
+        labelInsideUISearchBar?.font = labelInsideUISearchBar?.font?.withSize(16)
+        print(searchText)
+        
+        
+        
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        for index in searchData {
+            if index.name == searchBar.text {
+                str.append(index)
+            }
+        }
+        searchData.removeAll()
+        searchData = str
+        searchTableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.endEditing(true)
+        searchData.removeAll()
+        str.removeAll()
+        getData()
+        searchTableView.reloadData()
+    }
 }
