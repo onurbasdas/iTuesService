@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Detail View Controller-->
+        <!--Detail-->
         <scene sceneID="iVm-MC-kBH">
             <objects>
                 <viewController storyboardIdentifier="DetailViewController" id="pc4-8W-7uW" customClass="DetailViewController" customModule="iTunesServices" customModuleProvider="target" sceneMemberID="viewController">
@@ -68,7 +68,7 @@
                             <constraint firstItem="36t-L4-D3J" firstAttribute="top" secondItem="Dsa-YK-Gcb" secondAttribute="bottom" constant="10" id="tvi-Ym-Fgp"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="jkn-ys-yiq">
+                    <navigationItem key="navigationItem" title="Detail" id="jkn-ys-yiq">
                         <barButtonItem key="rightBarButtonItem" image="star" catalog="system" id="yjV-XO-I8i">
                             <color key="tintColor" systemColor="labelColor"/>
                             <connections>
@@ -88,7 +88,7 @@
             </objects>
             <point key="canvasLocation" x="-2700" y="2206"/>
         </scene>
-        <!--Search View Controller-->
+        <!--Search-->
         <scene sceneID="gIO-Iw-2GT">
             <objects>
                 <viewController id="UwW-rM-dJA" customClass="SearchViewController" customModule="iTunesServices" customModuleProvider="target" sceneMemberID="viewController">
@@ -124,7 +124,7 @@
                             <constraint firstItem="tPS-bO-O7I" firstAttribute="leading" secondItem="SHN-RF-dyC" secondAttribute="leading" id="rcQ-PO-4vf"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="bUb-2K-mx7">
+                    <navigationItem key="navigationItem" title="Search" id="bUb-2K-mx7">
                         <barButtonItem key="backBarButtonItem" title=" " id="jF7-YY-KtO"/>
                     </navigationItem>
                     <connections>
@@ -294,6 +294,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sxx-2c-iTz">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -313,7 +314,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cu8-aB-qIX">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" systemColor="labelColor"/>
+                        <color key="barTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

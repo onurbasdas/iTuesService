@@ -28,6 +28,20 @@ class MainViewController: UIViewController, FavoriteProtocol {
         conf()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        getData()
+    }
+    
+    func getData() {
+        service.getInfo { result in
+            DispatchQueue.main.async { [self] in
+                self.iTunes = result!
+                resultData.append(contentsOf: iTunes.results!)
+                mainCollectionView.reloadData()
+            }
+        }
+    }
+    
     func conf() {
         let menuView = BTNavigationDropdownMenu(title: BTTitle.index(1), items: items)
         self.navigationItem.titleView = menuView
@@ -49,20 +63,6 @@ class MainViewController: UIViewController, FavoriteProtocol {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        getData()
-    }
-    
-    func getData() {
-        service.getInfo { result in
-            DispatchQueue.main.async { [self] in
-                self.iTunes = result!
-                resultData.append(contentsOf: iTunes.results!)
-                mainCollectionView.reloadData()
-            }
-        }
-    }
-    
     func favoriteClicked(cell: UICollectionViewCell, button: UIButton) {
         let index : IndexPath = mainCollectionView.indexPath(for: cell)!
         if FavoriteManager.checkIfFavorites(movieId: resultData[index.row].id!) != true {
@@ -70,6 +70,9 @@ class MainViewController: UIViewController, FavoriteProtocol {
             button.setImage(UIImage(named: "starselected"), for: .normal)
             self.makeAlert(titleInput: "Favori", messageInput: "Favorilere Eklenmiştir.")
             button.tag = 1
+            DispatchQueue.main.async {
+                self.mainCollectionView.reloadData()
+            }
         } else {
             FavoriteManager.deleteMovie(movieId: resultData[index.row].id!)
             button.setImage(UIImage(named: "star"), for: .normal)

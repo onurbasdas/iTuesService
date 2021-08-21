@@ -24,8 +24,10 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         searchTableView.register(SearchTableViewCell.nib(), forCellReuseIdentifier: SearchTableViewCell.identifier)
         searchButton.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         getData()
-        
     }
     
     func getData() {
