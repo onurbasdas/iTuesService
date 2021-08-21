@@ -15,10 +15,9 @@ class SearchViewController: UIViewController {
     
     var service = Service()
     var searchData = [BookDetail]()
+    var filteredSearchData = [BookDetail]()
     var searchTunes = iTunesData()
     var searchInfo : BookDetail = BookDetail()
-    var str = [BookDetail]()
-    
     
     
     override func viewDidLoad() {
@@ -34,6 +33,7 @@ class SearchViewController: UIViewController {
             DispatchQueue.main.async { [self] in
                 self.searchTunes = result!
                 searchData.append(contentsOf: searchTunes.results!)
+                filteredSearchData.append(contentsOf: searchTunes.results!)
                 searchTableView.reloadData()
             }
         }
@@ -42,16 +42,16 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchData.count
+        return filteredSearchData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = searchTableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as! SearchTableViewCell
         
-        cell.imageName.text = searchData[indexPath.row].name
-        cell.imageAuthor.text = searchData[indexPath.row].artistName
-        cell.imageDate.text = searchData[indexPath.row].releaseDate
-        cell.imageSearch.kf.setImage(with: URL(string: searchData[indexPath.row].artworkUrl100!))
+        cell.imageName.text = filteredSearchData[indexPath.row].name
+        cell.imageAuthor.text = filteredSearchData[indexPath.row].artistName
+        cell.imageDate.text = filteredSearchData[indexPath.row].releaseDate
+        cell.imageSearch.kf.setImage(with: URL(string: filteredSearchData[indexPath.row].artworkUrl100!))
         
         return cell
     }
@@ -61,7 +61,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        searchInfo = searchData[indexPath.row]
+        searchInfo = filteredSearchData[indexPath.row]
         performSegue(withIdentifier: "toDetail", sender: nil)
     }
     
@@ -73,38 +73,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension SearchViewController: UISearchBarDelegate {
+extension SearchViewController: UISearchBarDelegate,UISearchDisplayDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        let textFieldInsideUISearchBar = searchBar.value(forKey: "searchField") as? UITextField
-        textFieldInsideUISearchBar?.textColor = UIColor.black
-        textFieldInsideUISearchBar?.font = textFieldInsideUISearchBar?.font?.withSize(16)
-        let labelInsideUISearchBar = textFieldInsideUISearchBar!.value(forKey: "placeholderLabel") as? UILabel
-        labelInsideUISearchBar?.textColor = UIColor.black
-        labelInsideUISearchBar?.font = labelInsideUISearchBar?.font?.withSize(16)
-        print(searchText)
-        
-        
-        
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        for index in searchData {
-            if index.name == searchBar.text {
-                str.append(index)
-            }
+        filteredSearchData = searchData.filter({$0.name!.contains(searchText)})
+        if searchText == "" {
+            filteredSearchData = searchData
         }
-        searchData.removeAll()
-        searchData = str
-        searchTableView.reloadData()
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-        searchBar.endEditing(true)
-        searchData.removeAll()
-        str.removeAll()
-        getData()
         searchTableView.reloadData()
     }
 }
