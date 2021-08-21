@@ -67,12 +67,12 @@ class MainViewController: UIViewController, FavoriteProtocol {
         let index : IndexPath = mainCollectionView.indexPath(for: cell)!
         if FavoriteManager.checkIfFavorites(movieId: resultData[index.row].id!) != true {
             FavoriteManager.saveFavoriteFilm(film: resultData[index.row])
-            button.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            button.setImage(UIImage(named: "starselected"), for: .normal)
             self.makeAlert(titleInput: "Favori", messageInput: "Favorilere Eklenmiştir.")
             button.tag = 1
         } else {
             FavoriteManager.deleteMovie(movieId: resultData[index.row].id!)
-            button.setImage(UIImage(systemName: "star"), for: .normal)
+            button.setImage(UIImage(named: "star"), for: .normal)
             self.makeAlert(titleInput: "Favori", messageInput: "Favorilerden Çıkarılmıştır.")
             button.tag = 0
             DispatchQueue.main.async {
@@ -91,10 +91,10 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
         if FavoriteManager.checkIfFavorites(movieId: resultData[indexPath.row].id!) {
-            cell.favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            cell.favoriteButton.setImage(UIImage(named: "starselected"), for: .normal)
             cell.favoriteButton.tag = 1
         } else {
-            cell.favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+            cell.favoriteButton.setImage(UIImage(named: "star"), for: .normal)
             cell.favoriteButton.tag = 0
         }
         cell.delegate = self

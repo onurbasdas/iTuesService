@@ -27,12 +27,12 @@ class FavoritesViewController: UIViewController, FavoriteCollectionProtocol {
 
         if FavoriteManager.checkIfFavorites(movieId: favoriteManageCell.id!) != true {
             FavoriteManager.saveFavoriteFilm(film: favoriteManageCell)
-            button.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            button.setImage(UIImage(named: "starselected"), for: .normal)
             self.makeAlert(titleInput: "Favori", messageInput: "Favorilere Eklenmiştir.")
             button.tag = 1
         } else {
             FavoriteManager.deleteMovie(movieId: favoriteManageCell.id!)
-            button.setImage(UIImage(systemName: "star"), for: .normal)
+            button.setImage(UIImage(named: "star"), for: .normal)
             self.makeAlert(titleInput: "Favori", messageInput: "Favorilerden Çıkarılmıştır.")
             button.tag = 0
             DispatchQueue.main.async {
@@ -57,10 +57,10 @@ extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.delegate = self
         
         if FavoriteManager.checkIfFavorites(movieId: favoriteManager.id!) {
-            cell.favoriteClikButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            cell.favoriteClikButton.setImage(UIImage(named: "starselected"), for: .normal)
             cell.favoriteClikButton.tag = 1
         } else {
-            cell.favoriteClikButton.setImage(UIImage(systemName: "star"), for: .normal)
+            cell.favoriteClikButton.setImage(UIImage(named: "star"), for: .normal)
             cell.favoriteClikButton.tag = 0
         }
         return cell
