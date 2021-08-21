@@ -20,7 +20,6 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     
     weak var delegate: FavoriteCollectionProtocol?
     
-    
     @IBOutlet var favoriteBackView: UIView!
     @IBOutlet var favoriteImageMain: UIImageView!
     @IBOutlet var favoriteClikButton: UIButton!
@@ -29,11 +28,15 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        conf()
+    }
+    
+    func conf() {
         favoriteClikButton.tag = 0
+        favoriteBackView.layer.cornerRadius = 8
     }
     
     @IBAction func favoriteButclicked(_ sender: Any) {
         delegate?.favoriteCell(cell: self, button: favoriteClikButton)
-        
     }
 }

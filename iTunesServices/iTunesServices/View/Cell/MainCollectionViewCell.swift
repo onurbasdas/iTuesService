@@ -35,7 +35,6 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     func conf() {
         backView.layer.cornerRadius = 8
-        labelMain.layer.cornerRadius = 8
         favoriteButton.tag = 0
     }
     
