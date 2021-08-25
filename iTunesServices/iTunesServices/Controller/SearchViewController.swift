@@ -34,8 +34,10 @@ class SearchViewController: UIViewController {
         service.getInfo { result in
             DispatchQueue.main.async { [self] in
                 self.searchTunes = result!
-                searchData.append(contentsOf: searchTunes.results!)
-                filteredSearchData.append(contentsOf: searchTunes.results!)
+                if searchTunes.results != nil {
+                    searchData.append(contentsOf: searchTunes.results!)
+                    filteredSearchData.append(contentsOf: searchTunes.results!)
+                }
                 searchTableView.reloadData()
             }
         }

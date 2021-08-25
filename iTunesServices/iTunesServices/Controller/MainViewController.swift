@@ -36,7 +36,9 @@ class MainViewController: UIViewController, FavoriteProtocol {
         service.getInfo { result in
             DispatchQueue.main.async { [self] in
                 self.iTunes = result!
-                resultData.append(contentsOf: iTunes.results!)
+                if iTunes.results != nil {
+                    resultData.append(contentsOf: iTunes.results!)
+                }
                 mainCollectionView.reloadData()
             }
         }
