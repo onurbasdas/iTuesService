@@ -79,7 +79,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchViewController: UISearchBarDelegate,UISearchDisplayDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredSearchData = searchData.filter({$0.name!.contains(searchText)})
+        filteredSearchData = searchData.filter({$0.name!.lowercased().contains(searchText)})
         if searchText == "" {
             filteredSearchData = searchData
         }
