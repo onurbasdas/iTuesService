@@ -8,5 +8,5 @@
 import Foundation
 
 class Constants {
-    static let baseUrl = "https://rss.itunes.apple.com/api/v1/us/books/top-free/all/100/non-explicit.json"
+    static let baseUrl = "https://rss.applemarketingtools.com/api/v2/us/music/most-played/50/albums.json"
 }
